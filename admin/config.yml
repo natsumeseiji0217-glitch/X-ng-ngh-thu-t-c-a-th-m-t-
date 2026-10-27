@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Triều Sinh/Xưởng nghệ thuật của thám tử   # <- SỬA: tên-github/tên-repo của bạn
+  repo: natsumeseiji0217-glitch/X-ng-ngh-thu-t-c-a-th-m-t-   # <- SỬA: tên-github/tên-repo của bạn
   branch: main
 
 media_folder: "images/uploads"
