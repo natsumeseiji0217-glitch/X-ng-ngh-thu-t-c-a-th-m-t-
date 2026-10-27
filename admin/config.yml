@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: TEN-GITHUB/TEN-REPO   # <- SỬA: tên-github/tên-repo của bạn
+  repo: Triều Sinh/Xưởng nghệ thuật của thám tử   # <- SỬA: tên-github/tên-repo của bạn
   branch: main
 
 media_folder: "images/uploads"
