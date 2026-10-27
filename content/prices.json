@@ -1,0 +1,56 @@
+{
+  "items": [
+    {
+      "name": "Full body",
+      "price": "145.000",
+      "tag": ""
+    },
+    {
+      "name": "Half, key hole",
+      "price": "110.000",
+      "tag": ""
+    },
+    {
+      "name": "Ảnh thẻ",
+      "price": "90.000",
+      "tag": ""
+    },
+    {
+      "name": "Manga",
+      "price": "90.000",
+      "tag": "giá 1 char"
+    },
+    {
+      "name": "Fake scene, tranh couple",
+      "price": "100.000",
+      "tag": "giá 1 char"
+    }
+  ],
+  "note": "Đối với manga, fake scene và tranh couple, đây là giá của 1 char.",
+  "addons": [
+    {
+      "name": "Thêm char",
+      "value": "+100%",
+      "hint": "",
+      "free": false
+    },
+    {
+      "name": "Background đơn giản",
+      "value": "Free",
+      "hint": "",
+      "free": true
+    },
+    {
+      "name": "Background cầu kỳ",
+      "value": "20k → 50k",
+      "hint": "",
+      "free": false
+    },
+    {
+      "name": "Thương mại",
+      "value": "x2 mệnh giá",
+      "hint": "dùng cho mục đích kinh doanh",
+      "free": false
+    }
+  ]
+}
