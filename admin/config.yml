@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: natsumeseiji0217-glitch/X-ng-ngh-thu-t-c-a-th-m-t-   # <- SỬA: tên-github/tên-repo của bạn
+  repo: natsumeseiji0217-glitch/X-ng-ngh-thu-t-c-a-th-m-t-
   branch: main
 
 media_folder: "images/uploads"
@@ -47,3 +47,9 @@ collections:
               - {label: "Ảnh", name: "image", widget: "image"}
               - {label: "Chú thích", name: "caption", widget: "string", required: false}
               - {label: "Loại (Full body, Manga... dùng để lọc)", name: "type", widget: "string", required: false}
+      - name: "music"
+        label: "Nhạc nền"
+        file: "content/music.json"
+        fields:
+          - {label: "Link nhạc (YouTube / Spotify / SoundCloud / file .mp3). Để trống = tắt nhạc", name: "url", widget: "string", required: false}
+          - {label: "Tên bài (hiện trên nút nhạc)", name: "title", widget: "string", required: false}

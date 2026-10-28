@@ -115,6 +115,14 @@ h1{animation:rise .9s .2s backwards}
 .lb p{margin:0;color:#fff;font-weight:600}
 .lb .x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer}
 @media(max-width:480px){.tabs a{padding:7px 11px;font-size:.8rem}}
+/* music */
+.mu{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:15;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.mu-btn{width:52px;height:52px;border:0;border-radius:50%;background:linear-gradient(135deg,var(--red),#f0675a);color:#fff;font-size:1.4rem;cursor:pointer;animation:pulse 2.4s infinite;box-shadow:0 6px 18px rgba(217,58,74,.45)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(217,58,74,.5)}100%{box-shadow:0 0 0 16px rgba(217,58,74,0)}}
+.mu-panel{width:min(320px,calc(100vw - 32px));padding:10px;border-radius:16px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);transition:opacity .25s,transform .25s}
+.mu-panel.off{opacity:0;transform:translateY(12px);pointer-events:none}
+.mu-panel iframe{width:100%;border:0;border-radius:12px;display:block}
+.mu-t{font-size:.82rem;font-weight:600;color:var(--muted);margin:0 2px 8px}
 </style>
 </head>
 <body>
@@ -177,6 +185,7 @@ h1{animation:rise .9s .2s backwards}
   <p class="empty" id="empty" hidden>Sample sẽ sớm được cập nhật ✨</p>
   <div class="go"><a class="btn" href="#tos" data-v="tos">Đọc Terms of Service →</a></div>
 </main>
+<div class="mu" id="mu" hidden><div class="mu-panel off" id="mup"></div><button class="mu-btn" id="mub" aria-label="Nhạc"><span>🎵</span></button></div>
 <div class="lb" id="lb" hidden><button class="x" aria-label="Đóng">×</button><img alt=""><p></p></div>
 
 <!-- TOS -->
@@ -290,6 +299,17 @@ function closeLb(){lb.hidden=true;lbi.removeAttribute("src");document.body.style
 gal.addEventListener("click",function(e){var f=e.target.closest(".shot");if(!f)return;var im=f.querySelector("img");lbi.src=im.src;lbp.textContent=im.alt==="Sample"?"":im.alt;lb.hidden=false;document.body.style.overflow="hidden"});
 lb.addEventListener("click",closeLb);
 document.addEventListener("keydown",function(e){if(e.key==="Escape")closeLb()});
+var mu=document.getElementById("mu"),mup=document.getElementById("mup"),mub=document.getElementById("mub");
+function embed(u){var m;u=(u||"").trim();
+if(m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/))([\w-]{11})/))return{s:"https://www.youtube.com/embed/"+m[1]+"?rel=0&playsinline=1",h:190};
+if(m=u.match(/youtube\.com\/playlist\?(?:.*&)?list=([\w-]+)/))return{s:"https://www.youtube.com/embed/videoseries?list="+m[1],h:190};
+if(m=u.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|episode|show|artist)\/(\w+)/))return{s:"https://open.spotify.com/embed/"+m[1]+"/"+m[2],h:(m[1]==="track"||m[1]==="episode")?152:352};
+if(/soundcloud\.com\//.test(u))return{s:"https://w.soundcloud.com/player/?url="+encodeURIComponent(u)+"&color=%23d93a4a",h:166};
+if(/\.(mp3|m4a|ogg|wav)(\?|$)/i.test(u))return{a:u};return null}
+function renderMusic(d){var e=d&&embed(d.url);if(!e)return;mu.hidden=false;
+mup.innerHTML=(d.title?'<div class="mu-t">🎵 '+esc(d.title)+'</div>':'')+(e.a?'<audio controls loop src="'+esc(e.a)+'" style="width:100%"></audio>':'<iframe src="'+esc(e.s)+'" height="'+e.h+'" allow="autoplay; encrypted-media; clipboard-write" allowfullscreen></iframe>')}
+mub.addEventListener("click",function(){mup.classList.toggle("off")});
+load("content/music.json",renderMusic);
 load("content/prices.json",renderPrices);
 load("content/gallery.json",renderGallery,function(){renderGallery(null)});
 show(location.hash.slice(1),false);
