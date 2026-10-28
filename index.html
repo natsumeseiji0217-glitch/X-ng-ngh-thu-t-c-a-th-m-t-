@@ -301,8 +301,8 @@ lb.addEventListener("click",closeLb);
 document.addEventListener("keydown",function(e){if(e.key==="Escape")closeLb()});
 var mu=document.getElementById("mu"),mup=document.getElementById("mup"),mub=document.getElementById("mub");
 function embed(u){var m;u=(u||"").trim();
-if(m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/))([\w-]{11})/))return{s:"https://www.youtube.com/embed/"+m[1]+"?rel=0&playsinline=1",h:190};
-if(m=u.match(/youtube\.com\/playlist\?(?:.*&)?list=([\w-]+)/))return{s:"https://www.youtube.com/embed/videoseries?list="+m[1],h:190};
+if(m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/))([\w-]{11})/))return{s:"https://www.youtube.com/embed/"+m[1]+"?rel=0&playsinline=1&loop=1&playlist="+m[1],h:190};
+if(m=u.match(/youtube\.com\/playlist\?(?:.*&)?list=([\w-]+)/))return{s:"https://www.youtube.com/embed/videoseries?list="+m[1]+"&loop=1",h:190};
 if(m=u.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|episode|show|artist)\/(\w+)/))return{s:"https://open.spotify.com/embed/"+m[1]+"/"+m[2],h:(m[1]==="track"||m[1]==="episode")?152:352};
 if(/soundcloud\.com\//.test(u))return{s:"https://w.soundcloud.com/player/?url="+encodeURIComponent(u)+"&color=%23d93a4a",h:166};
 if(/\.(mp3|m4a|ogg|wav)(\?|$)/i.test(u))return{a:u};return null}
